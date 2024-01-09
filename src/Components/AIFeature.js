@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import './AIFeature.css';
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const AIFeature = () => {
   const navigate = useNavigate();
   const [board, setBoard] = useState(Array(9).fill(''));
   const [currentPlayer, setCurrentPlayer] = useState('X');
   const [win, setWin] = useState('');
-  let [lock, setLock]=useState(false);
+  let [lock, setLock] = useState(false);
 
   const handleCellClick = (index) => {
     if (!lock && board[index] === '') {
@@ -39,8 +38,6 @@ const AIFeature = () => {
       }
     }
   };
-
-
 
   const calculateBestMove = (board, currentPlayer) => {
     // Base case: Check if the game is over
@@ -120,31 +117,55 @@ const AIFeature = () => {
     return board.every((cell) => cell !== '');
   };
 
-  const reset=()=>{
+  const reset = () => {
     setBoard(Array(9).fill(''));
     setCurrentPlayer('X');
     setWin('');
     setLock(false);
-  }
+  };
 
   return (
     <div className="game">
-        <h1 className='description'>You: X</h1>
-        <h1 className='description'>AI: O</h1>
-        <h1 className='description'>{win}</h1>
-      <div className="board">
-        {board.map((cell, index) => (
-          <div
-            key={index}
-            className="cell"
-            onClick={() => handleCellClick(index)}
-          >
-            {cell}
-          </div>
-        ))}
+      <h1 className='description'>You: X</h1>
+      <h1 className='description'>AI: O</h1>
+      <h1 className='result'>{win}</h1>
+      <div className="AIboard">
+        <div className="row">
+          {board.slice(0, 3).map((cell, index) => (
+            <div
+              key={index}
+              className="cell"
+              onClick={() => handleCellClick(index)}
+            >
+              {cell}
+            </div>
+          ))}
+        </div>
+        <div className="row">
+          {board.slice(3, 6).map((cell, index) => (
+            <div
+              key={index + 3}
+              className="cell"
+              onClick={() => handleCellClick(index + 3)}
+            >
+              {cell}
+            </div>
+          ))}
+        </div>
+        <div className="row">
+          {board.slice(6, 9).map((cell, index) => (
+            <div
+              key={index + 6}
+              className="cell"
+              onClick={() => handleCellClick(index + 6)}
+            >
+              {cell}
+            </div>
+          ))}
+        </div>
       </div>
-      <button onClick={()=>{reset()}}>Restart</button>
-      <button onClick={()=>navigate(-1)}>Back</button>
+      <button onClick={reset}>Restart</button>
+      <button onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 };

@@ -11,6 +11,10 @@
     align-items: center;
 }
 
+.turn {
+    color:#26ffcb
+}
+
 .title span{
     color: #80a1e9;
     padding-left:15px;
