@@ -1,0 +1,76 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 300px;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cell:hover {
+  background-color: #e0e0e0;
+}
+
+.description {
+  margin: 5px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.board:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border: 10px solid #4caf50;
+  border-radius: 10px;
+}
+
+.board .cell:nth-child(4),
+.board .cell:nth-child(5),
+.board .cell:nth-child(6),
+.board .cell:nth-child(7),
+.board .cell:nth-child(8) {
+  border-top-width: 0;
+}
+
+.board .cell:nth-child(2),
+.board .cell:nth-child(3),
+.board .cell:nth-child(5),
+.board .cell:nth-child(6),
+.board .cell:nth-child(8),
+.board .cell:nth-child(9) {
+  border-left-width: 0;
+}
+
+.board .cell:nth-child(5) {
+  border-width: 2px;
+}

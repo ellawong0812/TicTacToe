@@ -1,0 +1,29 @@
+.mode {
+    background-color: #007bff;
+    color: #fff;
+    padding:20px;
+    border-radius: 14px;
+    font-size: 20px;
+}
+
+.mode:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.mode + .mode {
+    margin:20px;
+}
+
+.title {
+    margin-top:50px;
+    color:rgb(91, 218, 235);
+    font-size:60px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align:center;
+}

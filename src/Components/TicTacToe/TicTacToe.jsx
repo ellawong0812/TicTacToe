@@ -3,15 +3,19 @@ import React from "react";
 import {useState, useRef} from 'react';
 import circle_icon from '../Assets/circle.png';
 import cross_icon from '../Assets/cross.png';
+import {useNavigate} from 'react-router-dom';
 
 //current state of the Tic Tac Toe board.
 let data =['','','','','','','','',''];
 
 const TicTacToe = () => {
+    const navigate = useNavigate();
     // the number of moves made
     let [count, setCount]=useState(0);
     //whether the game is ended or not (if lock is true, no more moves can be made).
     let [lock, setLock]=useState(false);
+    let [currentPlayer, setCurrentPlayer]=useState('X');
+    let [nextPlayer,setNextPlayer]=useState('O');
     
     let titleRef = useRef(null);
     let box1 = useRef(null);
@@ -40,10 +44,14 @@ const TicTacToe = () => {
             e.target.innerHTML = `<img src='${cross_icon}'>`;
             data[num]='x';
             setCount(++count);
+            setCurrentPlayer('X');
+            setNextPlayer('O');
         }else{
             e.target.innerHTML = `<img src='${circle_icon}'>`;
             data[num]='o';
             setCount(++count);
+            setCurrentPlayer('O');
+            setNextPlayer('X');
         }
         checkWin();
     }
@@ -107,6 +115,8 @@ const TicTacToe = () => {
     return(
         <div className='container'>
             <h1 className="title" ref={titleRef}>Tic Tac Toe Game In <span>React</span></h1>
+            <h2 className='title'>Current Turn: <span>{currentPlayer}</span></h2>
+            <h2 className='title'>Next Turn: <span>{nextPlayer}</span></h2>
             <div className="board">
                 <div className="row1">
                     <div className="boxes" ref={box1} onClick={(e)=>{toggle(e,0)}}></div>
@@ -125,6 +135,8 @@ const TicTacToe = () => {
                 </div>
             </div>
             <button className="reset" onClick={()=>{reset()}}>Reset</button>
+            <button className="reset" onClick={()=>navigate(-1)}>Back</button>
+            
         </div>
     );
 }
